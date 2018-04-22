@@ -21,7 +21,4 @@ public final class FeedReaderContract {
         public static final String COLUMN_NAME7 = "adres";
         //public static final String COLUMN_NAME_SUBTITLE = "subtitle";
     }
-
-
 }
-

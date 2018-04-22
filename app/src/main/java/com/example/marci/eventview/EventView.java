@@ -11,13 +11,25 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class EventView extends AppCompatActivity {
-
+    TextView e;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_view);
+
+        String tekst = "tekst123";
+
+        //FeedReaderDbHelper.putMethod();
+        //FeedReaderDbHelper.cursorMethod();
+
+        e = (TextView) findViewById (R.id.textview10);
+        e.setText(FeedReaderDbHelper.spotkanko);
+
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }

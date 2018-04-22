@@ -1,4 +1,4 @@
-//no jazdy nieziemskie: https://developer.android.com/training/data-storage/sqlite.html#java
+//sauce: https://developer.android.com/training/data-storage/sqlite.html#java
 
 package com.example.marci.eventview;
 
@@ -8,16 +8,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
-import java.security.AccessControlContext;
 import java.util.ArrayList;
 import java.util.List;
-
-//import static java.security.AccessController.getContext;
-import static com.example.marci.eventview.FeedReaderContract.*;
-//import static java.security.AccessController.getContext;
-//import android.content.getContext;
-//import static android.content.Context.getContext;
 
 public class FeedReaderDbHelper extends SQLiteOpenHelper {
     public FeedReaderDbHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -46,9 +42,19 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    public static String output = "output123";
+    //TextView textView10;
+
+    //public LayoutInflater inflater;
+    //View v = inflater.inflate(R.id.textview10);
+    //View innerView = v.findViewById(textview10);
 
     public void onCreate(SQLiteDatabase db) {
+
         db.execSQL(SQL_CREATE_ENTRIES);
+
+        //textView10 = (TextView)findViewById(R.id.textview10);
+        //textView10.setText(output);
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // This database is only a cache for online data, so its upgrade policy is
@@ -67,7 +73,9 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
     }
 
     //FeedReaderDbHelper mDbHelper;
-    FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getContext()); //chyba dziala
+
+    FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getContext()); //tu static rozwala wszystko
+
 
     public void putMethod() {
         // Gets the data repository in write mode
@@ -75,8 +83,10 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME1, "todo");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME2, "todo2");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME1, "spotkanie");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME7, "zolnierska 1");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME1, "spotkanie2");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME7, "zolnierska 2");
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId = db2.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
@@ -86,19 +96,21 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
 
     // Define a projection that specifies which columns from the database
 // you will actually use after this query.
-    String[] projection = {
+    static String[] projection = {
             BaseColumns._ID,
             FeedReaderContract.FeedEntry.COLUMN_NAME1,
-            FeedReaderContract.FeedEntry.COLUMN_NAME2
+            FeedReaderContract.FeedEntry.COLUMN_NAME7
     };
 
     // Filter results WHERE "title" = 'My Title'
-    String selection = FeedReaderContract.FeedEntry.COLUMN_NAME1 + " = ?";
-    String[] selectionArgs = { "My Title" };
+    static String selection = FeedReaderContract.FeedEntry.COLUMN_NAME1 + " = ?";
+    static String[] selectionArgs = { "My Title" };
 
     // How you want the results sorted in the resulting Cursor
-    String sortOrder =
-            FeedReaderContract.FeedEntry.COLUMN_NAME2 + " DESC";
+    static String sortOrder =
+            FeedReaderContract.FeedEntry.COLUMN_NAME1 + " DESC";
+
+    public static String spotkanko = "uhhhh";
 
     public void cursorMethod() {
         Cursor cursor = db.query(
@@ -111,15 +123,15 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
                 sortOrder               // The sort order
         );
 
-        List itemIds = new ArrayList<>();
+        List nazwy = new ArrayList<>();
         while(cursor.moveToNext()) {
             long itemId = cursor.getLong(
-                    cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry._ID));
-            itemIds.add(itemId);
+                    cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry.COLUMN_NAME1));
+            nazwy.add(itemId);
         }
+        spotkanko=(String)nazwy.get(0);
         cursor.close();
     }
-
 
     // Define 'where' part of query.
     String selection2 = FeedReaderContract.FeedEntry.COLUMN_NAME1 + " LIKE ?";
