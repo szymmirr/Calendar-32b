@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">EventView</string>
+    <string name="action_remove">Usuń wydarzenie</string>
+    <string name="label_event">Wydarzenie:</string>
+    <string name="label_date">poniedziałek, 1 stycznia</string>
+    <string name="label_hour">12:00</string>
+    <string name="label_calendar">Mój kalendarz</string>
+    <string name="label_muted">Wyciszenie</string>
+    <string name="label_location">Żołnierska 49, Szczecin</string>
+    <string name="label_notes">Treść przykładowej notatki</string>
+    <string name="title_activity_event_edit">EventEdit</string>
+</resources>
