@@ -1,4 +1,4 @@
-package tabian.com.datepickerdialog;
+package com.example.marci.eventview;
 
 import android.provider.BaseColumns;
 

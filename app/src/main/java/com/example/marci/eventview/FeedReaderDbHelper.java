@@ -1,6 +1,6 @@
 //no jazdy nieziemskie: https://developer.android.com/training/data-storage/sqlite.html#java
 
-package tabian.com.datepickerdialog;
+package com.example.marci.eventview;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -13,8 +13,11 @@ import java.security.AccessControlContext;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.security.AccessController.getContext;
-import static tabian.com.datepickerdialog.FeedReaderContract.*;
+//import static java.security.AccessController.getContext;
+import static com.example.marci.eventview.FeedReaderContract.*;
+//import static java.security.AccessController.getContext;
+//import android.content.getContext;
+//import static android.content.Context.getContext;
 
 public class FeedReaderDbHelper extends SQLiteOpenHelper {
     public FeedReaderDbHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -22,18 +25,18 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
     }
 
     private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + FeedEntry.TABLE_NAME + " (" +
-                    FeedEntry._ID + " INTEGER PRIMARY KEY," +
-                    FeedEntry.COLUMN_NAME1 + " TEXT," +
-                    FeedEntry.COLUMN_NAME2 + " TEXT," +
-                    FeedEntry.COLUMN_NAME3 + " TEXT," +
-                    FeedEntry.COLUMN_NAME4 + " TEXT," +
-                    FeedEntry.COLUMN_NAME5 + " TEXT," +
-                    FeedEntry.COLUMN_NAME6 + " TEXT," +
-                    FeedEntry.COLUMN_NAME7 + " TEXT)";
+            "CREATE TABLE " + FeedReaderContract.FeedEntry.TABLE_NAME + " (" +
+                    FeedReaderContract.FeedEntry._ID + " INTEGER PRIMARY KEY," +
+                    FeedReaderContract.FeedEntry.COLUMN_NAME1 + " TEXT," +
+                    FeedReaderContract.FeedEntry.COLUMN_NAME2 + " TEXT," +
+                    FeedReaderContract.FeedEntry.COLUMN_NAME3 + " TEXT," +
+                    FeedReaderContract.FeedEntry.COLUMN_NAME4 + " TEXT," +
+                    FeedReaderContract.FeedEntry.COLUMN_NAME5 + " TEXT," +
+                    FeedReaderContract.FeedEntry.COLUMN_NAME6 + " TEXT," +
+                    FeedReaderContract.FeedEntry.COLUMN_NAME7 + " TEXT)";
 
     private static final String SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS " + FeedEntry.TABLE_NAME;
+            "DROP TABLE IF EXISTS " + FeedReaderContract.FeedEntry.TABLE_NAME;
 
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 1;
@@ -42,6 +45,8 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
     public FeedReaderDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
+
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
     }
@@ -55,8 +60,14 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
-    FeedReaderDbHelper mDbHelper;
-    //FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getContext()); //NO NIE DZIALA TO
+    private static Context context;
+
+    public static Context getContext() {
+        return context;
+    }
+
+    //FeedReaderDbHelper mDbHelper;
+    FeedReaderDbHelper mDbHelper = new FeedReaderDbHelper(getContext()); //chyba dziala
 
     public void putMethod() {
         // Gets the data repository in write mode
@@ -64,11 +75,11 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(FeedEntry.COLUMN_NAME1, "todo");
-        values.put(FeedEntry.COLUMN_NAME2, "todo2");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME1, "todo");
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME2, "todo2");
 
         // Insert the new row, returning the primary key value of the new row
-        long newRowId = db2.insert(FeedEntry.TABLE_NAME, null, values);
+        long newRowId = db2.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
     }
 
     SQLiteDatabase db = mDbHelper.getReadableDatabase();
@@ -77,21 +88,21 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
 // you will actually use after this query.
     String[] projection = {
             BaseColumns._ID,
-            FeedEntry.COLUMN_NAME1,
-            FeedEntry.COLUMN_NAME2
+            FeedReaderContract.FeedEntry.COLUMN_NAME1,
+            FeedReaderContract.FeedEntry.COLUMN_NAME2
     };
 
     // Filter results WHERE "title" = 'My Title'
-    String selection = FeedEntry.COLUMN_NAME1 + " = ?";
+    String selection = FeedReaderContract.FeedEntry.COLUMN_NAME1 + " = ?";
     String[] selectionArgs = { "My Title" };
 
     // How you want the results sorted in the resulting Cursor
     String sortOrder =
-            FeedEntry.COLUMN_NAME2 + " DESC";
+            FeedReaderContract.FeedEntry.COLUMN_NAME2 + " DESC";
 
     public void cursorMethod() {
         Cursor cursor = db.query(
-                FeedEntry.TABLE_NAME,   // The table to query
+                FeedReaderContract.FeedEntry.TABLE_NAME,   // The table to query
                 projection,             // The array of columns to return (pass null to get all)
                 selection,              // The columns for the WHERE clause
                 selectionArgs,          // The values for the WHERE clause
@@ -103,7 +114,7 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         List itemIds = new ArrayList<>();
         while(cursor.moveToNext()) {
             long itemId = cursor.getLong(
-                    cursor.getColumnIndexOrThrow(FeedEntry._ID));
+                    cursor.getColumnIndexOrThrow(FeedReaderContract.FeedEntry._ID));
             itemIds.add(itemId);
         }
         cursor.close();
@@ -111,11 +122,11 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
 
 
     // Define 'where' part of query.
-    String selection2 = FeedEntry.COLUMN_NAME1 + " LIKE ?";
+    String selection2 = FeedReaderContract.FeedEntry.COLUMN_NAME1 + " LIKE ?";
     // Specify arguments in placeholder order.
     String[] selectionArgs2 = { "MyTitle" };
     // Issue SQL statement.
-    int deletedRows = db.delete(FeedEntry.TABLE_NAME, selection2, selectionArgs2);
+    int deletedRows = db.delete(FeedReaderContract.FeedEntry.TABLE_NAME, selection2, selectionArgs2);
 
 
 
@@ -125,14 +136,14 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
         // New value for one column
         String title = "MyNewTitle";
         ContentValues values = new ContentValues();
-        values.put(FeedEntry.COLUMN_NAME1, title);
+        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME1, title);
 
         // Which row to update, based on the title
-        String selection = FeedEntry.COLUMN_NAME1 + " LIKE ?";
+        String selection = FeedReaderContract.FeedEntry.COLUMN_NAME1 + " LIKE ?";
         String[] selectionArgs = {"MyOldTitle"};
 
         int count = db.update(
-                FeedEntry.TABLE_NAME,
+                FeedReaderContract.FeedEntry.TABLE_NAME,
                 values,
                 selection,
                 selectionArgs);
