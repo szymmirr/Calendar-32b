@@ -4,7 +4,6 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -36,7 +35,7 @@ public class EventEdit extends AppCompatActivity {
                 Event.Priorytet priorytet = Event.Priorytet.valueOf("pole z listy rozwijanej"); //Dodaj pole listy rozwijanej z polami klasy event dla enum priorytet
 
                 //nazwa kalendarza
-                EditText calendarNameEvent = (EditText) findViewById(R.id.editText5);
+                EditText calendarNameEvent = (EditText) findViewById(R.id.txtcalendar);
                 String nazwaKalendarz = calendarNameEvent.getText().toString();
 
                 //data wydarzenia
@@ -52,7 +51,7 @@ public class EventEdit extends AppCompatActivity {
                 String godzina_do = timeStop.getText().toString();
 
                 //notatka do wydarzenia
-                EditText noteEvent = (EditText) findViewById(R.id.editText6);
+                EditText noteEvent = (EditText) findViewById(R.id.txtnote);
                 String notatka = noteEvent.getText().toString();
 
                 //robisz obiekt z wszytskimi danymi powyższymi
