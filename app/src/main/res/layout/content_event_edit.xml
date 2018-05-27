@@ -117,9 +117,9 @@
         android:id="@+id/button_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="35dp"
-        android:layout_marginStart="7dp"
-        android:text="ADD"
+        android:layout_marginBottom="36dp"
+        android:layout_marginStart="16dp"
+        android:text="Dodaj"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/txtnote" />
 
@@ -129,7 +129,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="37dp"
         android:layout_marginEnd="39dp"
-        android:text="VIEW ALL"
+        android:text="Wyswietl"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/txtnote" />
 

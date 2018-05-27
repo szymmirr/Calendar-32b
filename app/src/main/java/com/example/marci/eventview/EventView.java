@@ -22,13 +22,6 @@ import android.widget.Toast;
 
 public class EventView extends AppCompatActivity {
 
-    DatabaseHelper myDb;
-    EditText txtdate,txttime,txtaddress,txtcalendar,txtnote;
-    Button btnAddData;
-    Button btnviewAll;
-    Button btnDelete;
-    Button btnviewUpdate;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,74 +29,7 @@ public class EventView extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        myDb = new DatabaseHelper(this);
 
-        txtdate = (EditText)findViewById(R.id.txtdate);
-        txttime = (EditText)findViewById(R.id.txttime);
-        txtaddress = (EditText)findViewById(R.id.txtaddress);
-        txtcalendar = (EditText)findViewById(R.id.txtcalendar);
-        txtnote = (EditText)findViewById(R.id.txtnote);
-
-        btnAddData = (Button)findViewById(R.id.button_add);
-        btnviewAll = (Button)findViewById(R.id.button_viewAll);
-        AddData();
-        viewAll();
-    }
-
-    public  void AddData() {
-        btnAddData.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        boolean isInserted = myDb.insertData(txtdate.getText().toString(),
-                                txttime.getText().toString(),
-                                txtaddress.getText().toString(),
-                                txtcalendar.getText().toString(),
-                                txtnote.getText().toString() );
-                        if(isInserted == true)
-                            Toast.makeText(EventView.this,"Data Inserted",Toast.LENGTH_LONG).show();
-                        else
-                            Toast.makeText(EventView.this,"Data not Inserted",Toast.LENGTH_LONG).show();
-                    }
-                }
-        );
-    }
-
-    public void viewAll() {
-        btnviewAll.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Cursor res = myDb.getAllData();
-                        if(res.getCount() == 0) {
-                            // show message
-                            showMessage("Error","Nothing found");
-                            return;
-                        }
-
-                        StringBuffer buffer = new StringBuffer();
-                        while (res.moveToNext()) {
-                            buffer.append("Id:"+ res.getString(0)+"\n");
-                            buffer.append("Date:"+ res.getString(1)+"\n");
-                            buffer.append("Time:"+ res.getString(2)+"\n");
-                            buffer.append("Address:"+ res.getString(3)+"\n");
-                            buffer.append("Calendar:"+ res.getString(4)+"\n");
-                            buffer.append("Note:"+ res.getString(8)+"\n\n");
-                        }
-
-                        // Show all data
-                        showMessage("Data",buffer.toString());
-                    }
-                }
-        );
-    }
-
-    public void showMessage(String title,String Message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(Message);
-        builder.show();
     }
 
     public void sendMessage(View view) {
