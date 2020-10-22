@@ -3,8 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Calendar-32b.iml" filepath="$PROJECT_DIR$/Calendar-32b.iml" />
+      <module fileurl="file://F:\kuc rzeczy here\GitHub\WIZUT\gicior\Calendar-32b\Calendar-32b.iml" filepath="F:\kuc rzeczy here\GitHub\WIZUT\gicior\Calendar-32b\Calendar-32b.iml" />
       <module fileurl="file://C:\Users\Szymek\Documents\GitHub\Calendar-32b\EventView.iml" filepath="C:\Users\Szymek\Documents\GitHub\Calendar-32b\EventView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://F:\kuc rzeczy here\GitHub\WIZUT\gicior\Calendar-32b\app\app.iml" filepath="F:\kuc rzeczy here\GitHub\WIZUT\gicior\Calendar-32b\app\app.iml" />
     </modules>
   </component>
 </project>
