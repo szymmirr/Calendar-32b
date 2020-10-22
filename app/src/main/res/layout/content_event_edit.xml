@@ -81,7 +81,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtdate" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/txtcalendar"
         android:layout_width="272dp"
         android:layout_height="41dp"
         android:layout_marginStart="8dp"
@@ -90,10 +90,10 @@
         android:hint="@string/label_calendar"
         android:inputType="text"
         app:layout_constraintStart_toEndOf="@+id/imageView15"
-        app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextView3" />
+        app:layout_constraintTop_toBottomOf="@+id/txtaddress" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/txtnote"
         android:layout_width="272dp"
         android:layout_height="190dp"
         android:layout_marginStart="8dp"
@@ -101,10 +101,10 @@
         android:ems="10"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toEndOf="@+id/imageView14"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintTop_toBottomOf="@+id/txtcalendar" />
 
     <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView3"
+        android:id="@+id/txtaddress"
         android:layout_width="272dp"
         android:layout_height="41dp"
         android:layout_marginStart="8dp"
@@ -112,6 +112,26 @@
         android:hint="@string/label_location"
         app:layout_constraintStart_toEndOf="@+id/imageView13"
         app:layout_constraintTop_toBottomOf="@+id/txttime" />
+
+    <Button
+        android:id="@+id/button_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:layout_marginStart="16dp"
+        android:text="Dodaj"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/txtnote" />
+
+    <Button
+        android:id="@+id/button_viewAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="37dp"
+        android:layout_marginEnd="39dp"
+        android:text="Wyswietl"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txtnote" />
 
 
 </android.support.constraint.ConstraintLayout>
