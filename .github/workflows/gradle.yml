@@ -22,6 +22,6 @@ jobs:
       run: chmod +x gradlew
 
     - name: Setup Gradle
-      uses: mikepenz/gradle-dependency-submission@{latest}
+      uses: mikepenz/gradle-dependency-submission@v0.9.0
       with:
         gradle-build-module: ":app"
