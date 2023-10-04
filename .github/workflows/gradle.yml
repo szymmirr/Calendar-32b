@@ -14,15 +14,14 @@ jobs:
       with:
         distribution: temurin
         java-version: |
-          17
-          11
           8
-        
-    - name: Setup Gradle
-      uses: gradle/gradle-build-action@v2.9.0
+          11
+          17
 
     - name: Make gradlew executable
       run: chmod +x gradlew
-    
-    - name: Execute Gradle build
-      run: ./gradlew build
+
+    - name: Setup Gradle
+      uses: mikepenz/gradle-dependency-submission@{latest}
+      with:
+        gradle-build-module: ":app"
